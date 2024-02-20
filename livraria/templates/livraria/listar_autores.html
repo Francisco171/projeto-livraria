@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Django Livraria</title>
+  </head>
+  <body>
+    {% extends 'livraria/base.html' %} {% block content %}
+    <p>Lista de Autores</p>
+
+    {% for autor in autores %} {{ autor.nome }}
+    <br /><br />
+    {% endfor %} {% endblock %}
+  </body>
+</html>

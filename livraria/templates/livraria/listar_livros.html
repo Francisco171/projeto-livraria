@@ -1,0 +1,68 @@
+{% extends 'livraria/base.html' %} 
+{% block content %} 
+{% if user.is_authenticated %}
+<h3>Hello My Friend {{ user.username }}</h3>
+<a href="{% url 'logout_usuario' %}">Sair</a>
+{% else %}
+<p>Você precisa realizar o login</p>
+{% if mensagem %}
+<p>{{ mensagem }}</p>
+{% endif %} {% endif %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Autor(es)</th>
+      <th>Categoria</th>
+      <th>Código</th>
+      <th>Quantidade</th>
+      <th>Valor</th>
+      <th>Ano</th>
+      <th>Descrição</th>
+      <th>Imagem</th>
+      {% if user.is_authenticated %}
+      <th>Editar</th>
+      {% endif %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for livro in livros %}
+    <tr>
+      <td>{{ livro.nome }}</td>
+      <td>{{ livro.autor.all|join:", " }}</td>
+      <td>{{ livro.categoria.nome }}</td>
+      <td>{{ livro.codigo }}</td>
+      <td>{{ livro.quantidade }}</td>
+      <td>R$ {{ livro.valor }}</td>
+      <td>{{ livro.ano }}</td>
+      <td>{{ livro.descricao }}</td>
+      <td>
+        {% if livro.imagem %}
+        <a href="{% url 'detalhar_livro' id=livro.id %}">
+          <img
+            height="100"
+            width="75"
+            src="{{ livro.imagem.url }}"
+            alt="{{ livro.nome }}"
+          />
+        </a>
+        {% else %}
+        <p>Sem imagem disponível</p>
+        {% endif %}
+      </td>
+      {% if user.is_authenticated %}
+      <td>
+        <a
+          href="{% url 'editar_livro' id=livro.id %}"
+          class="btn btn-danger btn-sm float-right"
+        >
+          Editar
+        </a>
+      </td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

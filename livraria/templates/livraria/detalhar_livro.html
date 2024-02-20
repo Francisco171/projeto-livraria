@@ -1,0 +1,20 @@
+{% extends 'livraria/base.html' %}
+
+{% block content %}
+        <div>
+        <h2>{{ livro.nome }}</h2>
+        <p>Autor(es): {{ livro.autor.all|join:", " }}</p>
+        <p>Categoria: {{ livro.categoria.nome }}</p>
+        <p>Código: {{ livro.codigo }}</p>
+        <p>Quantidade: {{ livro.quantidade }}</p>
+        <p>Valor: R$ {{ livro.valor }}</p>
+        <p>Ano: {{ livro.ano }}</p>
+        <p>Descrição: {{ livro.descricao }}</p>
+        {% if livro.imagem %}
+            <img height="300" width="200" src="{{ livro.imagem.url }}" alt="{{ livro.nome }}">
+        {% else %}
+            <p>Sem imagem disponível</p>
+        {% endif %}
+        </div>
+{% endblock %}
+

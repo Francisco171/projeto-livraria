@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt">
+  {% extends 'livraria/base.html' %}
+  
+  {% block content %}
+    <p>Lista de Categorias</p>
+    <br />
+
+    {% for categoria in categorias %}
+      {{ categoria.nome }}
+    {% endfor %}
+  {% endblock %}
+</html>
+
