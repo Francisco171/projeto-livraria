@@ -48,6 +48,7 @@ def editar_livro(request, id):
             return redirect('detalhar_livro', id=livro.id)
     else:
         form = LivroForm(instance=livro)
+        
     return render(request, 'livraria/editar_livro.html', {'form': form})
 
 def buscar_livro(request):

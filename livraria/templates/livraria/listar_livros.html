@@ -1,5 +1,4 @@
-{% extends 'livraria/base.html' %} 
-{% block content %} 
+{% extends 'livraria/base.html' %} {% block content %} 
 {% if user.is_authenticated %}
 <h3>Hello My Friend {{ user.username }}</h3>
 <a href="{% url 'logout_usuario' %}">Sair</a>
